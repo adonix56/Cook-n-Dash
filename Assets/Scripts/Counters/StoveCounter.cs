@@ -7,7 +7,7 @@ public class StoveCounter : BaseCounter
     [SerializeField] private FryingRecipeSO[] fryingRecipeSOArray;
     [SerializeField] private StoveCounterVisual stoveCounterVisual;
     private FryingRecipeSO currentRecipeSO;
-    private float fryingTimer;
+    //private float fryingTimer;
     /*
     private State state;
  
@@ -17,7 +17,7 @@ public class StoveCounter : BaseCounter
         Fried,
         Burned,
     }
-
+    /*
     private void Start() {
         StartCoroutine(HandleFryTimer());
     }
@@ -29,18 +29,17 @@ public class StoveCounter : BaseCounter
 
     private void Update() {
         if (currentRecipeSO) {
-            fryingTimer += Time.deltaTime;
-            if (fryingTimer > currentRecipeSO.fryingTimerMax) {
+            //fryingTimer += Time.deltaTime;
+            bool checkRaw = GetKitchenObject().GetKitchenObjectSO().state == KitchenObjectSO.State.Raw;
+            AddProgress(Time.deltaTime / currentRecipeSO.fryingTimerMax, !checkRaw);
+            if (IsProgressComplete()) {
                 //Fried
-                fryingTimer = 0f;
+                ClearProgress();
                 GetKitchenObject().DestroySelf();
                 KitchenObject.SpawnKitchenObject(currentRecipeSO.output, this);
                 currentRecipeSO = GetRecipeSOFromInput(GetKitchenObject().GetKitchenObjectSO());
-                if (!currentRecipeSO) {
-                    stoveCounterVisual.SetFrying(false);
-                }
+                stoveCounterVisual.SetFrying(GetKitchenObject().GetState());
             }
-            Debug.Log(fryingTimer);
         }
     }
 
@@ -50,20 +49,21 @@ public class StoveCounter : BaseCounter
         {
             if (player.HasKitchenObject() && HasFryingRecipeSO(player.GetKitchenObject().GetKitchenObjectSO()))
             {
-                stoveCounterVisual.SetFrying(true);
                 player.GetKitchenObject().SetKitchenObjectParent(this);
-                ResetProgress(GetKitchenObject().GetProgress());
+                bool checkRaw = GetKitchenObject().GetKitchenObjectSO().state == KitchenObjectSO.State.Raw;
+                ResetProgress(GetKitchenObject().GetProgress(), !checkRaw);
                 currentRecipeSO = GetRecipeSOFromInput(GetKitchenObject().GetKitchenObjectSO());
+                stoveCounterVisual.SetFrying(GetKitchenObject().GetState());
             }
         }
         else
         {
             if (!player.HasKitchenObject())
             {
-                stoveCounterVisual.SetFrying(false);
                 ClearProgress();
                 currentRecipeSO = null;
                 GetKitchenObject().SetKitchenObjectParent(player);
+                stoveCounterVisual.SetFrying(KitchenObjectSO.State.Default);
             }
         }
     }

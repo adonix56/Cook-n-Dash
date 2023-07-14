@@ -33,15 +33,17 @@ public abstract class BaseCounter : MonoBehaviour, IKitchenObjectParent
         return kitchenObject != null;
     }
 
-    public bool CheckProgress() {
+    public bool IsProgressComplete() {
         if (HasKitchenObject())
-            return kitchenObject.GetProgress() < 1f;
+            return kitchenObject.GetProgress() > 1f;
         return false;
     }
 
     public void AddProgress(float n, bool hide = false) {
         if (HasKitchenObject() && progressBarUI != null) {
-            progressBarUI.SetBar(kitchenObject.AddProgress(n));
+            float progress = kitchenObject.AddProgress(n);
+            if (!hide)
+                progressBarUI.SetBar(progress);
         }
     }
 
@@ -51,8 +53,8 @@ public abstract class BaseCounter : MonoBehaviour, IKitchenObjectParent
         }
     }
 
-    public void ResetProgress(float n) {
-        if (HasKitchenObject() && progressBarUI != null) {
+    public void ResetProgress(float n, bool hide = false) {
+        if (HasKitchenObject() && progressBarUI != null && !hide) {
             ClearProgress();
             progressBarUI.SetBar(kitchenObject.GetProgress());
         }

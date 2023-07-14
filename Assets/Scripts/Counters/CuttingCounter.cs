@@ -14,7 +14,9 @@ public class CuttingCounter : BaseCounter
         if (!HasKitchenObject()) {
             if (player.HasKitchenObject()) {
                 player.GetKitchenObject().SetKitchenObjectParent(this);
-                ResetProgress(GetKitchenObject().GetProgress());
+                currentRecipe = GetRecipeSOFromInput(GetKitchenObject().GetKitchenObjectSO());
+                if (currentRecipe)
+                    ResetProgress(GetKitchenObject().GetProgress());
             }
         } else {
             if (!player.HasKitchenObject()) {
@@ -26,7 +28,6 @@ public class CuttingCounter : BaseCounter
 
     public override void InteractAlternateStart(CharacterController player) {
         if (HasKitchenObject()) {
-            currentRecipe = GetRecipeSOFromInput(GetKitchenObject().GetKitchenObjectSO());
             if (currentRecipe != null)
                 CutKitchenObject();
             /*foreach (CuttingRecipeSO cuttingRecipeSO in cuttingRecipeSOArray) {
@@ -58,13 +59,13 @@ public class CuttingCounter : BaseCounter
 
     private void Update() {
         if (isCutting) {
-            if (CheckProgress()) {
-                AddProgress(currentRecipe.cuttingSpeed * Time.deltaTime);
-            } else {
+            if (IsProgressComplete()) {
                 StopCutKitchenObject();
                 ClearProgress();
                 GetKitchenObject().DestroySelf();
                 KitchenObject.SpawnKitchenObject(currentRecipe.output, this);
+            } else {
+                AddProgress(currentRecipe.cuttingSpeed * Time.deltaTime);
             }
         }
     }

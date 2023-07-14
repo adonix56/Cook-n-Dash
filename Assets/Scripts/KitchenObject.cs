@@ -56,4 +56,8 @@ public class KitchenObject : MonoBehaviour
     public float AddProgress(float n) {
         return progress += n;
     }
+
+    public KitchenObjectSO.State GetState() {
+        return kitchenObjectSO.state;
+    }
 }
