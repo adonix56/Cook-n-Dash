@@ -5,8 +5,19 @@ using UnityEngine;
 public class StoveCounter : BaseCounter
 {
     [SerializeField] private FryingRecipeSO[] fryingRecipeSOArray;
-    private FryingRecipeSO currentRecipe;
+    [SerializeField] private StoveCounterVisual stoveCounterVisual;
+    private FryingRecipeSO currentRecipeSO;
+    private float fryingTimer;
     /*
+    private State state;
+ 
+    private enum State {
+        Idle,
+        Frying,
+        Fried,
+        Burned,
+    }
+
     private void Start() {
         StartCoroutine(HandleFryTimer());
     }
@@ -17,8 +28,19 @@ public class StoveCounter : BaseCounter
     */
 
     private void Update() {
-        if (HasKitchenObject()) {
-
+        if (currentRecipeSO) {
+            fryingTimer += Time.deltaTime;
+            if (fryingTimer > currentRecipeSO.fryingTimerMax) {
+                //Fried
+                fryingTimer = 0f;
+                GetKitchenObject().DestroySelf();
+                KitchenObject.SpawnKitchenObject(currentRecipeSO.output, this);
+                currentRecipeSO = GetRecipeSOFromInput(GetKitchenObject().GetKitchenObjectSO());
+                if (!currentRecipeSO) {
+                    stoveCounterVisual.SetFrying(false);
+                }
+            }
+            Debug.Log(fryingTimer);
         }
     }
 
@@ -28,15 +50,19 @@ public class StoveCounter : BaseCounter
         {
             if (player.HasKitchenObject() && HasFryingRecipeSO(player.GetKitchenObject().GetKitchenObjectSO()))
             {
+                stoveCounterVisual.SetFrying(true);
                 player.GetKitchenObject().SetKitchenObjectParent(this);
                 ResetProgress(GetKitchenObject().GetProgress());
+                currentRecipeSO = GetRecipeSOFromInput(GetKitchenObject().GetKitchenObjectSO());
             }
         }
         else
         {
             if (!player.HasKitchenObject())
             {
+                stoveCounterVisual.SetFrying(false);
                 ClearProgress();
+                currentRecipeSO = null;
                 GetKitchenObject().SetKitchenObjectParent(player);
             }
         }
