@@ -5,6 +5,22 @@ using UnityEngine;
 public class StoveCounter : BaseCounter
 {
     [SerializeField] private FryingRecipeSO[] fryingRecipeSOArray;
+    private FryingRecipeSO currentRecipe;
+    /*
+    private void Start() {
+        StartCoroutine(HandleFryTimer());
+    }
+
+    private IEnumerator HandleFryTimer() {
+        yield return new WaitForSeconds(1f);
+    }
+    */
+
+    private void Update() {
+        if (HasKitchenObject()) {
+
+        }
+    }
 
     public override void Interact(CharacterController player)
     {

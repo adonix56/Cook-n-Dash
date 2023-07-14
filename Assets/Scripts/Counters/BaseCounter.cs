@@ -39,7 +39,7 @@ public abstract class BaseCounter : MonoBehaviour, IKitchenObjectParent
         return false;
     }
 
-    public void AddProgress(float n) {
+    public void AddProgress(float n, bool hide = false) {
         if (HasKitchenObject() && progressBarUI != null) {
             progressBarUI.SetBar(kitchenObject.AddProgress(n));
         }
