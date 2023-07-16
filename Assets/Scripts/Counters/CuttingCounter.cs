@@ -64,6 +64,7 @@ public class CuttingCounter : BaseCounter
                 ClearProgress();
                 GetKitchenObject().DestroySelf();
                 KitchenObject.SpawnKitchenObject(currentRecipe.output, this);
+                currentRecipe = GetRecipeSOFromInput(GetKitchenObject().GetKitchenObjectSO());
             } else {
                 AddProgress(currentRecipe.cuttingSpeed * Time.deltaTime);
             }

@@ -422,38 +422,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5053494469243357559}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &988089030499959384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056618951563277892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f367dfa59544343bc5cd1c8086fda9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectSpawnPoint: {fileID: 6260574215692590911}
-  progressBarUI: {fileID: 113373186}
-  fryingRecipeSOArray:
-  - {fileID: 11400000, guid: 41c56dbce43152f47a4a3c484a0dc5bd, type: 2}
-  - {fileID: 11400000, guid: 5067974555c9f6049acf216d16597058, type: 2}
-  stoveCounterVisual: {fileID: 113373190}
---- !u!114 &4801242531807270783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056618951563277892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e47a7b0672a93b4a82896661b192c13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseCounter: {fileID: 988089030499959384}
-  selectedVisual: {fileID: 4246416668402980441}
 --- !u!114 &113373186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +449,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizzlingParticlesGameObject: {fileID: 8314337199574751344}
   stoveOnVisualGameObject: {fileID: 4264064446818865145}
+  stoveCounter: {fileID: 988089030499959384}
+--- !u!114 &988089030499959384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056618951563277892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f367dfa59544343bc5cd1c8086fda9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectSpawnPoint: {fileID: 6260574215692590911}
+  progressBarUI: {fileID: 113373186}
+  fryingRecipeSOArray:
+  - {fileID: 11400000, guid: 41c56dbce43152f47a4a3c484a0dc5bd, type: 2}
+  - {fileID: 11400000, guid: 5067974555c9f6049acf216d16597058, type: 2}
+--- !u!114 &4801242531807270783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056618951563277892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e47a7b0672a93b4a82896661b192c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseCounter: {fileID: 988089030499959384}
+  selectedVisual: {fileID: 4246416668402980441}
 --- !u!4 &6260574215692590911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1207977787121817160, guid: 614d939da323ff548be9b077313f0bbf,

@@ -6,9 +6,14 @@ public class StoveCounterVisual : MonoBehaviour
 {
     [SerializeField] private GameObject sizzlingParticlesGameObject;
     [SerializeField] private GameObject stoveOnVisualGameObject;
+    [SerializeField] private StoveCounter stoveCounter;
 
-    public void SetFrying(KitchenObjectSO.State state) {
-        if (state == KitchenObjectSO.State.Raw || state == KitchenObjectSO.State.Cooked) {
+    private void Start() {
+        stoveCounter.OnFryingStateChanged += SetFrying;
+    }
+
+    public void SetFrying(object sender, StoveCounter.OnFryingStateChangedEventArgs e) {
+        if (e.state == KitchenObjectSO.State.Raw || e.state == KitchenObjectSO.State.Cooked) {
             sizzlingParticlesGameObject.SetActive(true);
             stoveOnVisualGameObject.SetActive(true);
         } else {
