@@ -142,8 +142,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4363643265052769227, guid: e46d93e42dd64d64b97f92b063c75634, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e46d93e42dd64d64b97f92b063c75634, type: 3}
+--- !u!1 &1400173057475974530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8361024132258138743, guid: e46d93e42dd64d64b97f92b063c75634,
+    type: 3}
+  m_PrefabInstance: {fileID: 7450707351765164021}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8999239073459022021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400173057475974530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41997a0d3828c574cbb9f2330aae500d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kitchenObjectSO: {fileID: 11400000, guid: 7b9291527f0103f48b286489a52c6dfb, type: 2}
+  animator: {fileID: 3470391465805058886}
+--- !u!95 &3470391465805058886 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6291375275376708787, guid: e46d93e42dd64d64b97f92b063c75634,
+    type: 3}
+  m_PrefabInstance: {fileID: 7450707351765164021}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4644541651127750126 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2815454392875176475, guid: e46d93e42dd64d64b97f92b063c75634,
