@@ -56,6 +56,14 @@ public class StoveCounter : BaseCounter
                 OnFryingStateChanged?.Invoke(this, new OnFryingStateChangedEventArgs {
                     state = KitchenObjectSO.State.Default
                 });
+            } else {
+                if (TryToBuildMeal(player)) {
+                    ClearProgress();
+                    currentRecipeSO = null;
+                    OnFryingStateChanged?.Invoke(this, new OnFryingStateChangedEventArgs {
+                        state = KitchenObjectSO.State.Default
+                    });
+                }
             }
         }
     }

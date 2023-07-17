@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PlateKitchenObject : KitchenObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private List<KitchenObjectSO> kitchenObjectSOList;
+
+    private void Awake() {
+        kitchenObjectSOList = new List<KitchenObjectSO>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void AddIngredient(KitchenObjectSO kitchenObjectSO) {
+        kitchenObjectSOList.Add(kitchenObjectSO);
     }
 }

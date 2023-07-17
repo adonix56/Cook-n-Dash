@@ -15,6 +15,8 @@ public class ClearCounter : BaseCounter
         } else {
             if (!player.HasKitchenObject()) {
                 GetKitchenObject().SetKitchenObjectParent(player);
+            } else { // Player is holding something
+                TryToBuildMeal(player);
             }
         }
     }

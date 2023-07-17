@@ -14,6 +14,7 @@ public class ContainerCounter : BaseCounter
     }
 
     public override void Interact(CharacterController player) {
+        base.Interact(player);
         if (!HasKitchenObject()) {
             if (player.HasKitchenObject()) {
                 player.GetKitchenObject().SetKitchenObjectParent(this);
@@ -29,6 +30,8 @@ public class ContainerCounter : BaseCounter
             }
         } else if (!player.HasKitchenObject()) {
             GetKitchenObject().SetKitchenObjectParent(player);
+        } else { // Player and Counter has something
+            TryToBuildMeal(player);
         }
     }
 }

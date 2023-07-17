@@ -22,6 +22,8 @@ public class CuttingCounter : BaseCounter
             if (!player.HasKitchenObject()) {
                 ClearProgress();
                 GetKitchenObject().SetKitchenObjectParent(player);
+            } else {
+                TryToBuildMeal(player);
             }
         }
     }

@@ -59,4 +59,29 @@ public abstract class BaseCounter : MonoBehaviour, IKitchenObjectParent
             progressBarUI.SetBar(kitchenObject.GetProgress());
         }
     }
+
+    public bool TryToBuildMeal(CharacterController player) {
+        bool plateCounter = GetKitchenObject() is PlateKitchenObject;
+        bool platePlayer = player.GetKitchenObject() is PlateKitchenObject;
+        if (plateCounter && !platePlayer) { // Plate is on the Counter
+            BuildMealOnCounter(player);
+            return true;
+        } else if (platePlayer && !plateCounter) { // Player is holding a plate
+            BuildMealOnPlayer(player.GetKitchenObject());
+            return true;
+        }
+        return false;
+    }
+
+    private void BuildMealOnPlayer(KitchenObject plate) {
+        PlateKitchenObject plateKitchenObject = plate as PlateKitchenObject;
+        plateKitchenObject.AddIngredient(kitchenObject.GetKitchenObjectSO());
+        kitchenObject.DestroySelf();
+    }
+
+    private void BuildMealOnCounter(CharacterController player) {
+        PlateKitchenObject plateKitchenObject = kitchenObject as PlateKitchenObject;
+        plateKitchenObject.AddIngredient(player.GetKitchenObject().GetKitchenObjectSO());
+        player.GetKitchenObject().DestroySelf();
+    }
 }
