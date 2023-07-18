@@ -13,4 +13,8 @@ public class PlateKitchenObject : KitchenObject
     public void AddIngredient(KitchenObjectSO kitchenObjectSO) {
         kitchenObjectSOList.Add(kitchenObjectSO);
     }
+
+    public bool CanAddIngredient(KitchenObjectSO kitchenObjectSO) {
+        return kitchenObjectSO.plateable;
+    }
 }

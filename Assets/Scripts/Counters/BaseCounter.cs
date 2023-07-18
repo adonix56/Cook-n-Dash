@@ -64,24 +64,20 @@ public abstract class BaseCounter : MonoBehaviour, IKitchenObjectParent
         bool plateCounter = GetKitchenObject() is PlateKitchenObject;
         bool platePlayer = player.GetKitchenObject() is PlateKitchenObject;
         if (plateCounter && !platePlayer) { // Plate is on the Counter
-            BuildMealOnCounter(player);
-            return true;
+            return BuildMeal(kitchenObject as PlateKitchenObject, player.GetKitchenObject());
         } else if (platePlayer && !plateCounter) { // Player is holding a plate
-            BuildMealOnPlayer(player.GetKitchenObject());
-            return true;
+            return BuildMeal(player.GetKitchenObject() as PlateKitchenObject, kitchenObject);
         }
         return false;
     }
 
-    private void BuildMealOnPlayer(KitchenObject plate) {
-        PlateKitchenObject plateKitchenObject = plate as PlateKitchenObject;
-        plateKitchenObject.AddIngredient(kitchenObject.GetKitchenObjectSO());
-        kitchenObject.DestroySelf();
-    }
-
-    private void BuildMealOnCounter(CharacterController player) {
-        PlateKitchenObject plateKitchenObject = kitchenObject as PlateKitchenObject;
-        plateKitchenObject.AddIngredient(player.GetKitchenObject().GetKitchenObjectSO());
-        player.GetKitchenObject().DestroySelf();
+    private bool BuildMeal(PlateKitchenObject plateKitchenObject, KitchenObject ingredient) {
+        KitchenObjectSO ingredientSO = ingredient.GetKitchenObjectSO();
+        if (plateKitchenObject.CanAddIngredient(ingredientSO)) {
+            plateKitchenObject.AddIngredient(ingredientSO);
+            ingredient.DestroySelf();
+            return true;
+        }
+        return false;
     }
 }

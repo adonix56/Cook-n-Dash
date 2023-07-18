@@ -17,4 +17,5 @@ public class KitchenObjectSO : ScriptableObject
     public Sprite sprite;
     public string objectName;
     public State state;
+    public bool plateable;
 }
