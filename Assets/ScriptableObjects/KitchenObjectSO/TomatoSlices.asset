@@ -16,3 +16,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: c9f08c3c1ae2a364aaeaa3712540b1d4, type: 3}
   objectName: Tomato Slices
   state: 1
+  plateable: 1
