@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurgerVisual : MonoBehaviour
+public class BurgerVisual : BaseRecipe
 {
     public struct KitchenObjectSO_GameObject {
         public KitchenObjectSO kitchenObjectSO;
@@ -18,8 +18,7 @@ public class BurgerVisual : MonoBehaviour
         Double
     }
 
-    [SerializeField] private PlateKitchenObject plateKitchenObject;
-
+    [SerializeField] private State state;
 
     private void Start() {
         plateKitchenObject.OnIngredientAdded += IngredientAdded;

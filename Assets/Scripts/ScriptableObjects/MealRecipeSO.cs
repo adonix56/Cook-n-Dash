@@ -6,5 +6,6 @@ using UnityEngine;
 public class MealRecipeSO : ScriptableObject
 {
     public KitchenObjectSO[] ingredientList;
+    public int[] qtyList;
     public GameObject[] mealObjectsList;
 }

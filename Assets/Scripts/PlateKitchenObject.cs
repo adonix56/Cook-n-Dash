@@ -11,6 +11,7 @@ public class PlateKitchenObject : KitchenObject
     }
 
     private List<KitchenObjectSO> kitchenObjectSOList;
+    private BaseRecipe currentMeal;
 
     private void Awake() {
         kitchenObjectSOList = new List<KitchenObjectSO>();
@@ -24,6 +25,8 @@ public class PlateKitchenObject : KitchenObject
     }
 
     public bool CanAddIngredient(KitchenObjectSO kitchenObjectSO) {
-        return kitchenObjectSO.plateable;
+        if (currentMeal == null)
+            return kitchenObjectSO.plateable;
+        return currentMeal.CanAddIngredient(kitchenObjectSO);
     }
 }
