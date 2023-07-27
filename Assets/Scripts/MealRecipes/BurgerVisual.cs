@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurgerVisual : BaseRecipe
+public class BurgerVisual : BaseRecipe, IMealRecipe
 {
     public struct KitchenObjectSO_GameObject {
         public KitchenObjectSO kitchenObjectSO;
@@ -26,6 +26,10 @@ public class BurgerVisual : BaseRecipe
 
     public void IngredientAdded(object sender, PlateKitchenObject.OnIngredientAddedEventArgs e) {
         // reactivate the game objects based on the state of the burger
+    }
+
+    public bool CanAddIngredient(KitchenObjectSO kitchenObjectSO) {
+        return false;
     }
 
 }

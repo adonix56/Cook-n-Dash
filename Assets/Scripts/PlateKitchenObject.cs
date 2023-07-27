@@ -11,7 +11,7 @@ public class PlateKitchenObject : KitchenObject
     }
 
     private List<KitchenObjectSO> kitchenObjectSOList;
-    private BaseRecipe currentMeal;
+    private IMealRecipe currentMeal;
 
     private void Awake() {
         kitchenObjectSOList = new List<KitchenObjectSO>();

@@ -5,6 +5,4 @@ using UnityEngine;
 public class BaseRecipe : MonoBehaviour
 {
     public PlateKitchenObject plateKitchenObject;
-
-    public virtual bool CanAddIngredient(KitchenObjectSO kitchenObjectSO) { return false; }
 }
