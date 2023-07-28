@@ -19,6 +19,7 @@ public class BurgerVisual : BaseRecipe, IMealRecipe
     }
 
     [SerializeField] private State state;
+    [SerializeField] private Dictionary<State, GameObject> stateOfMeal;
 
     private void Start() {
         plateKitchenObject.OnIngredientAdded += IngredientAdded;
