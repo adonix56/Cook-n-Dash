@@ -12,6 +12,7 @@ namespace Recipe {
             public int count;
         }
         public PlateKitchenObject plateKitchenObject;
+        [SerializeField] public List<KitchenObjectSO_GameObject> mealObjects;
     }
 }
 

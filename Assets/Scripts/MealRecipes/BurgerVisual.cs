@@ -14,7 +14,7 @@ namespace Recipe {
             Double
         }
         /// <summary>
-        /// 
+        ///  
         /// No Bread No Meat
         /// cheese  0.047
         /// lettuce 0.062
@@ -40,19 +40,58 @@ namespace Recipe {
         /// </summary>
 
         [SerializeField] private State state;
-        [SerializeField] private List<KitchenObjectSO_GameObject> mealObjects;
+        [SerializeField] private List<KitchenObjectSO_GameObject> burgerChoices;
+
+        private int burgerCount = 0;
+        private int burgerMax = 2;
 
         private void Start() {
             plateKitchenObject.OnIngredientAdded += IngredientAdded;
         }
 
         public void IngredientAdded(object sender, PlateKitchenObject.OnIngredientAddedEventArgs e) {
-            // reactivate the game objects based on the state of the burger 
+            if (TryIngredientMatch(e.ingredient, out KitchenObjectSO_GameObject? ingredient, out bool isBurger)) {
+                AddIngredient(ingredient.Value.gameObject, ingredient.Value.count, isBurger);
+            }
         }
 
         public bool CanAddIngredient(KitchenObjectSO kitchenObjectSO) {
+            if (TryIngredientMatch(kitchenObjectSO, out KitchenObjectSO_GameObject? ingredient, out bool isBurger)) {
+                if (isBurger) {
+                    return burgerCount < burgerMax;
+                }
+                if (mealObjects[2].kitchenObjectSO == kitchenObjectSO) { // Cheese
+                    if (state != State.Double && state != State.DoubleNoBread) {
+                        return ingredient.Value.count < 1; // Only One cheese if not a double burger
+                    }
+                }
+                return ingredient.Value.count < ingredient.Value.gameObject.Length;
+            }
             return false;
         }
 
+        private bool TryIngredientMatch(KitchenObjectSO kitchenObjectSO, out KitchenObjectSO_GameObject? ingredient, out bool isBurger) {
+            foreach (KitchenObjectSO_GameObject ingredientMatch in mealObjects) {
+                if (ingredientMatch.kitchenObjectSO == kitchenObjectSO) {
+                    ingredient = ingredientMatch;
+                    isBurger = false;
+                    return true;
+                }
+            }
+            foreach (KitchenObjectSO_GameObject burgerChoice in burgerChoices) {
+                if (burgerChoice.kitchenObjectSO == kitchenObjectSO) {
+                    ingredient = burgerChoice;
+                    isBurger = true;
+                    return true;
+                }
+            }
+            ingredient = null;
+            isBurger = false;
+            return false;
+        }
+
+        private void AddIngredient(GameObject[] ingredientObjects, int count, bool isBurger) {
+
+        }
     }
 }
