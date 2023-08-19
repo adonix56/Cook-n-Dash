@@ -91,7 +91,17 @@ namespace Recipe {
         }
 
         private void AddIngredient(int ingredientIndex, bool isBurger) {
-
+            if (isBurger) {
+                // Add the corresponding burger patty
+                // Move the correct objects up
+                // Change the state
+            } else if (ingredientIndex == 0) { // bread
+                // Activate Bread
+                // Move the correct objects up
+                // Change the state
+            } else {
+                // Activate the correct object
+            }
         }
     }
 }
