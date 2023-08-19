@@ -50,47 +50,47 @@ namespace Recipe {
         }
 
         public void IngredientAdded(object sender, PlateKitchenObject.OnIngredientAddedEventArgs e) {
-            if (TryIngredientMatch(e.ingredient, out KitchenObjectSO_GameObject? ingredient, out bool isBurger)) {
-                AddIngredient(ingredient.Value.gameObject, ingredient.Value.count, isBurger);
+            if (TryIngredientMatch(e.ingredient, out int ingredientIndex, out bool isBurger)) {
+                AddIngredient(ingredientIndex, isBurger);
             }
         }
 
         public bool CanAddIngredient(KitchenObjectSO kitchenObjectSO) {
-            if (TryIngredientMatch(kitchenObjectSO, out KitchenObjectSO_GameObject? ingredient, out bool isBurger)) {
+            if (TryIngredientMatch(kitchenObjectSO, out int ingredientIndex, out bool isBurger)) {
                 if (isBurger) {
                     return burgerCount < burgerMax;
                 }
-                if (mealObjects[2].kitchenObjectSO == kitchenObjectSO) { // Cheese
+                if (ingredientIndex == 2) { // Cheese
                     if (state != State.Double && state != State.DoubleNoBread) {
-                        return ingredient.Value.count < 1; // Only One cheese if not a double burger
+                        return mealObjects[ingredientIndex].count < 1; // Only One cheese if not a double burger
                     }
                 }
-                return ingredient.Value.count < ingredient.Value.gameObject.Length;
+                return mealObjects[ingredientIndex].count < mealObjects[ingredientIndex].gameObject.Length;
             }
             return false;
         }
 
-        private bool TryIngredientMatch(KitchenObjectSO kitchenObjectSO, out KitchenObjectSO_GameObject? ingredient, out bool isBurger) {
-            foreach (KitchenObjectSO_GameObject ingredientMatch in mealObjects) {
-                if (ingredientMatch.kitchenObjectSO == kitchenObjectSO) {
-                    ingredient = ingredientMatch;
+        private bool TryIngredientMatch(KitchenObjectSO kitchenObjectSO, out int ingredientIndex, out bool isBurger) {
+            for (int i = 0; i < mealObjects.Count; i++) {
+                if (mealObjects[i].kitchenObjectSO == kitchenObjectSO) {
+                    ingredientIndex = i;
                     isBurger = false;
                     return true;
                 }
             }
-            foreach (KitchenObjectSO_GameObject burgerChoice in burgerChoices) {
-                if (burgerChoice.kitchenObjectSO == kitchenObjectSO) {
-                    ingredient = burgerChoice;
+            for (int i = 0; i < burgerChoices.Count; i++) {
+                if (burgerChoices[i].kitchenObjectSO == kitchenObjectSO) {
+                    ingredientIndex = i;
                     isBurger = true;
                     return true;
                 }
             }
-            ingredient = null;
+            ingredientIndex = -1;
             isBurger = false;
             return false;
         }
 
-        private void AddIngredient(GameObject[] ingredientObjects, int count, bool isBurger) {
+        private void AddIngredient(int ingredientIndex, bool isBurger) {
 
         }
     }
