@@ -41,10 +41,11 @@ namespace Recipe {
         /// </summary>
 
         [SerializeField] private State state;
-        [SerializeField] private List<KitchenObjectSO_GameObject> burgerChoices;
+        [SerializeField] private KitchenObjectSO breadKitchenObjectSO;
 
         private int burgerCount = 0;
         private int burgerMax = 2;
+        private float burgerSpawnY = 0.021f;
 
         private void Start() {
             plateKitchenObject.OnIngredientAdded += IngredientAdded;
@@ -75,14 +76,7 @@ namespace Recipe {
             for (int i = 0; i < mealObjects.Count; i++) {
                 if (mealObjects[i].kitchenObjectSO == kitchenObjectSO) {
                     ingredientIndex = i;
-                    isBurger = false;
-                    return true;
-                }
-            }
-            for (int i = 0; i < burgerChoices.Count; i++) {
-                if (burgerChoices[i].kitchenObjectSO == kitchenObjectSO) {
-                    ingredientIndex = i;
-                    isBurger = true;
+                    isBurger = i > 3;
                     return true;
                 }
             }
@@ -100,9 +94,19 @@ namespace Recipe {
                 // Activate Bread
                 mealObjects[0].gameObject[0].SetActive(true);
                 // Move the correct objects up
-                
+                foreach (IngredientMatch ingredient in mealObjects) {
+                    if (ingredient.kitchenObjectSO != breadKitchenObjectSO) {
+                        foreach (GameObject ingredientObject in ingredient.gameObject) {
+                            ingredientObject.transform.Translate(Vector3.up * 0.165f);
+                        }
+                    }
+                }
+                burgerSpawnY += 0.165f; //Move Burger Spawns up
+
                 // Change the state
                 state = state + 3;
+                // Increase Count
+                mealObjects[ingredientIndex].count += 1;
             } else {
                 // Activate the correct object
             }

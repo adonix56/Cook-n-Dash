@@ -5,14 +5,8 @@ using UnityEngine;
 
 namespace Recipe {
     public class BaseRecipe : MonoBehaviour {
-        [Serializable]
-        public struct KitchenObjectSO_GameObject {
-            public KitchenObjectSO kitchenObjectSO;
-            public GameObject[] gameObject;
-            public int count;
-        }
         public PlateKitchenObject plateKitchenObject;
-        [SerializeField] public List<KitchenObjectSO_GameObject> mealObjects;
+        [SerializeField] public List<IngredientMatch> mealObjects;
     }
 }
 
