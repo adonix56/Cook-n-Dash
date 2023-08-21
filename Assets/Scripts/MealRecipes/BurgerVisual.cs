@@ -16,9 +16,10 @@ namespace Recipe {
         /// <summary>
         ///  
         /// No Bread No Meat
-        /// cheese  0.047
-        /// lettuce 0.062
-        /// tomatoes0.090
+        /// cheese          0.047
+        /// cheese double   0.272
+        /// lettuce         0.062
+        /// tomatoes        0.090
         /// 
         /// No Bread
         /// Meat Single     0.021
@@ -97,8 +98,11 @@ namespace Recipe {
                 // Change the state
             } else if (ingredientIndex == 0) { // bread
                 // Activate Bread
+                mealObjects[0].gameObject[0].SetActive(true);
                 // Move the correct objects up
+                
                 // Change the state
+                state = state + 3;
             } else {
                 // Activate the correct object
             }
