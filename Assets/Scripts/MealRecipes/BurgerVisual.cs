@@ -41,6 +41,7 @@ namespace Recipe {
         /// </summary>
 
         [SerializeField] private State state;
+        [SerializeField] private GameObject burgerVisual;
         [SerializeField] private KitchenObjectSO breadKitchenObjectSO;
 
         private int burgerCount = 0;
@@ -48,12 +49,12 @@ namespace Recipe {
         private float burgerSpawnY = 0.021f;
 
         private void Start() {
-            plateKitchenObject.OnIngredientAdded += IngredientAdded;
+            plateKitchenObject.OnIngredientAdded += AddIngredient;
         }
 
-        public void IngredientAdded(object sender, PlateKitchenObject.OnIngredientAddedEventArgs e) {
+        public void AddIngredient(object sender, PlateKitchenObject.OnIngredientAddedEventArgs e) {
             if (TryIngredientMatch(e.ingredient, out int ingredientIndex, out bool isBurger)) {
-                AddIngredient(ingredientIndex, isBurger);
+                ActivateIngredient(ingredientIndex, isBurger);
             }
         }
 
@@ -85,9 +86,10 @@ namespace Recipe {
             return false;
         }
 
-        private void AddIngredient(int ingredientIndex, bool isBurger) {
+        private void ActivateIngredient(int ingredientIndex, bool isBurger) {
             if (isBurger) {
                 // Add the corresponding burger patty
+                Debug.Log(mealObjects[ingredientIndex].kitchenObjectSO.prefab.transform.GetChild(0).GetChild(0).name);
                 // Move the correct objects up
                 // Change the state
             } else if (ingredientIndex == 0) { // bread
@@ -109,6 +111,10 @@ namespace Recipe {
                 mealObjects[ingredientIndex].count += 1;
             } else {
                 // Activate the correct object
+                int count = mealObjects[ingredientIndex].count;
+                mealObjects[ingredientIndex].gameObject[count].SetActive(true);
+                // Increase Count
+                mealObjects[ingredientIndex].count += 1;
             }
         }
     }
