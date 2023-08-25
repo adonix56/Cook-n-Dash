@@ -23,14 +23,14 @@ public class PlateKitchenObject : KitchenObject
             if (LevelRecipe.Instance.TryToFindRecipe(kitchenObjectSO, out GameObject mealRecipePrefab)) {
                 kitchenObjectSOList.Add(kitchenObjectSO);
                 currentMeal = Instantiate(mealRecipePrefab, transform).GetComponent<IMealRecipe>();
+                OnIngredientAdded += currentMeal.AddIngredient;
             } else { // Redundant check. Cannot be called if can't add recipe
                 return;
             }
-        } else {
-            OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs {
-                ingredient = kitchenObjectSO
-            });
         }
+        OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs {
+            ingredient = kitchenObjectSO
+        });
     }
 
     public bool CanAddIngredient(KitchenObjectSO kitchenObjectSO) {

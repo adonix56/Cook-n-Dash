@@ -51,7 +51,7 @@ namespace Recipe {
         private new void Start() {
             base.Start();
             Debug.Log("Adding AddIngredient to PlateKitchenObject");
-            plateKitchenObject.OnIngredientAdded += AddIngredient;
+            //plateKitchenObject.OnIngredientAdded += AddIngredient;
         }
 
         public void AddIngredient(object sender, PlateKitchenObject.OnIngredientAddedEventArgs e) {
