@@ -5,8 +5,13 @@ using UnityEngine;
 
 namespace Recipe {
     public class BaseRecipe : MonoBehaviour {
-        public PlateKitchenObject plateKitchenObject;
+        protected PlateKitchenObject plateKitchenObject;
         [SerializeField] public List<IngredientMatch> mealObjects;
+
+        protected virtual void Start() {
+            Debug.Log("Adding plateKitchenObject");
+            plateKitchenObject = transform.parent.GetComponent<PlateKitchenObject>();
+        }
     }
 }
 

@@ -462,7 +462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e93a71be9dffa4bba20dd76fc5d1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateKitchenObject: {fileID: 0}
   mealObjects:
   - kitchenObjectSO: {fileID: 11400000, guid: 7edd233ee72d9ec4c818acbc3ffc6da3, type: 2}
     gameObject:
@@ -10366,6 +10365,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheeseSlices_Visual
       objectReference: {fileID: 0}
+    - target: {fileID: 3812876574508226177, guid: 17cb28a1a37fd7f44ae6e1ad2aa9da78,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4121857745434089371, guid: 17cb28a1a37fd7f44ae6e1ad2aa9da78,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10560,7 +10564,7 @@ PrefabInstance:
     - target: {fileID: 3812876574508226177, guid: bc49891f572f1164e9938f845ec37ab0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc49891f572f1164e9938f845ec37ab0, type: 3}

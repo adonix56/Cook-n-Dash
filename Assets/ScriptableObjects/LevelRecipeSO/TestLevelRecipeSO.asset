@@ -12,3 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b75d779de93894d8d3b792a93f41d9, type: 3}
   m_Name: TestLevelRecipeSO
   m_EditorClassIdentifier: 
+  levelRecipeDictionary:
+  - kitchenObjectSO: {fileID: 11400000, guid: 7edd233ee72d9ec4c818acbc3ffc6da3, type: 2}
+    mealRecipePrefab: {fileID: 690553489604080639, guid: 0c84515e9c9257f439fbb40a808d8901,
+      type: 3}
+  - kitchenObjectSO: {fileID: 11400000, guid: f1a4bfbed13fffb44aced9d9b3289242, type: 2}
+    mealRecipePrefab: {fileID: 690553489604080639, guid: 0c84515e9c9257f439fbb40a808d8901,
+      type: 3}
+  - kitchenObjectSO: {fileID: 11400000, guid: b58810d300c2c4242ad1fd92607c1fe3, type: 2}
+    mealRecipePrefab: {fileID: 690553489604080639, guid: 0c84515e9c9257f439fbb40a808d8901,
+      type: 3}
+  - kitchenObjectSO: {fileID: 11400000, guid: fbdeb0e8ff2192948920358027f5b9d5, type: 2}
+    mealRecipePrefab: {fileID: 690553489604080639, guid: 0c84515e9c9257f439fbb40a808d8901,
+      type: 3}
+  - kitchenObjectSO: {fileID: 11400000, guid: 3d895a53272a6534da83add786dab6b5, type: 2}
+    mealRecipePrefab: {fileID: 690553489604080639, guid: 0c84515e9c9257f439fbb40a808d8901,
+      type: 3}
+  - kitchenObjectSO: {fileID: 11400000, guid: 27c73f21c93a62c418ed71f324d3e423, type: 2}
+    mealRecipePrefab: {fileID: 690553489604080639, guid: 0c84515e9c9257f439fbb40a808d8901,
+      type: 3}

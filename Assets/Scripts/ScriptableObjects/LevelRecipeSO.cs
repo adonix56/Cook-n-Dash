@@ -9,7 +9,7 @@ public class LevelRecipeSO : ScriptableObject
     [Serializable]
     public class LevelRecipeDictionaryItem {
         public KitchenObjectSO kitchenObjectSO;
-        public MealRecipeSO mealRecipeSO;
+        public GameObject mealRecipePrefab;
     }
 
     public List<LevelRecipeDictionaryItem> levelRecipeDictionary;
