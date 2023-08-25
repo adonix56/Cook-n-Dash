@@ -488,6 +488,7 @@ MonoBehaviour:
     count: 0
   state: 0
   burgerVisual: {fileID: 4005047127027575033}
+  breadTopObject: {fileID: 46777404625943997}
   breadKitchenObjectSO: {fileID: 11400000, guid: 7edd233ee72d9ec4c818acbc3ffc6da3,
     type: 2}
 --- !u!1 &724739355941332573
@@ -10232,7 +10233,7 @@ PrefabInstance:
     - target: {fileID: 3812876574508226176, guid: fb403d1efda6baf4190c507841617408,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.184
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 3812876574508226176, guid: fb403d1efda6baf4190c507841617408,
         type: 3}
@@ -10568,6 +10569,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc49891f572f1164e9938f845ec37ab0, type: 3}
+--- !u!1 &46777404625943997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2278059630995854716, guid: bc49891f572f1164e9938f845ec37ab0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2250503382380062913}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3157423475445775936 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3812876574508226177, guid: bc49891f572f1164e9938f845ec37ab0,
@@ -10600,7 +10607,7 @@ PrefabInstance:
     - target: {fileID: 3812876574508226176, guid: 44b7e90f95929c04c8394768d8bd1d14,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.156
+      value: 0.062
       objectReference: {fileID: 0}
     - target: {fileID: 3812876574508226176, guid: 44b7e90f95929c04c8394768d8bd1d14,
         type: 3}
@@ -10721,7 +10728,7 @@ PrefabInstance:
     - target: {fileID: 3812876574508226176, guid: 17cb28a1a37fd7f44ae6e1ad2aa9da78,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.272
+      value: 0.178
       objectReference: {fileID: 0}
     - target: {fileID: 3812876574508226176, guid: 17cb28a1a37fd7f44ae6e1ad2aa9da78,
         type: 3}

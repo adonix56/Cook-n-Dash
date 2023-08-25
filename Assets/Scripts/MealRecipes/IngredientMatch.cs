@@ -7,7 +7,7 @@ namespace Recipe {
     [Serializable]
     public class IngredientMatch {
         public KitchenObjectSO kitchenObjectSO;
-        public GameObject[] gameObject;
+        public List<GameObject> gameObject;
         public int count;
     }
 }

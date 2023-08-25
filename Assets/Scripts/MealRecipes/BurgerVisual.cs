@@ -17,7 +17,7 @@ namespace Recipe {
         ///  
         /// No Bread No Meat
         /// cheese          0.047
-        /// cheese double   0.272
+        /// cheese double   0.178
         /// lettuce         0.062
         /// tomatoes        0.090
         /// 
@@ -42,6 +42,7 @@ namespace Recipe {
 
         [SerializeField] private State state;
         [SerializeField] private GameObject burgerVisual;
+        [SerializeField] private GameObject breadTopObject;
         [SerializeField] private KitchenObjectSO breadKitchenObjectSO;
 
         private int burgerCount = 0;
@@ -71,7 +72,7 @@ namespace Recipe {
                         return mealObjects[ingredientIndex].count < 1; // Only One cheese if not a double burger
                     }
                 }
-                return mealObjects[ingredientIndex].count < mealObjects[ingredientIndex].gameObject.Length;
+                return mealObjects[ingredientIndex].count < mealObjects[ingredientIndex].gameObject.Count;
             }
             return false;
         }
@@ -92,22 +93,29 @@ namespace Recipe {
         private void ActivateIngredient(int ingredientIndex, bool isBurger) {
             if (isBurger) {
                 // Add the corresponding burger patty
-                Debug.Log(mealObjects[ingredientIndex].kitchenObjectSO.prefab.transform.GetChild(0).GetChild(0).name);
+                GameObject meatPatty = mealObjects[ingredientIndex].kitchenObjectSO.prefab.transform.GetChild(0).GetChild(0).gameObject;
+                meatPatty = Instantiate(meatPatty, burgerVisual.transform);
+                meatPatty.transform.Translate(Vector3.up * burgerSpawnY);
+                mealObjects[ingredientIndex].gameObject.Add(meatPatty);
                 // Move the correct objects up
+                // Move Bread
+                if (burgerCount == 0) {
+                    breadTopObject.transform.Translate(Vector3.up * 0.084f);
+                    MoveObjectsUp(0.094f, true);
+                } else {
+                    breadTopObject.transform.Translate(Vector3.up * 0.127f);
+                    MoveObjectsUp(0.131f, true);
+                }
                 // Change the state
+                burgerCount++;
+                burgerSpawnY += 0.129f; // Move Burger Spawn up for double
+                state++;
             } else if (ingredientIndex == 0) { // bread
                 // Activate Bread
                 mealObjects[0].gameObject[0].SetActive(true);
                 // Move the correct objects up
-                foreach (IngredientMatch ingredient in mealObjects) {
-                    if (ingredient.kitchenObjectSO != breadKitchenObjectSO) {
-                        foreach (GameObject ingredientObject in ingredient.gameObject) {
-                            ingredientObject.transform.Translate(Vector3.up * 0.165f);
-                        }
-                    }
-                }
+                MoveObjectsUp(0.165f, false);
                 burgerSpawnY += 0.165f; //Move Burger Spawns up
-
                 // Change the state
                 state = state + 3;
                 // Increase Count
@@ -118,6 +126,19 @@ namespace Recipe {
                 mealObjects[ingredientIndex].gameObject[count].SetActive(true);
                 // Increase Count
                 mealObjects[ingredientIndex].count += 1;
+            }
+        }
+
+        private void MoveObjectsUp(float moveAmount, bool ignorePatties) {
+            int limit = ignorePatties ? 4 : 6;
+            for (int i = 0; i < limit; i++) {
+                if (mealObjects[i].kitchenObjectSO != breadKitchenObjectSO) {
+                    for (int j = 0; j < mealObjects[i].gameObject.Count; j++) {
+                        if (i != 2 || !(i == 2 && burgerCount == 1 && ignorePatties)) {
+                            mealObjects[i].gameObject[j].transform.Translate(Vector3.up * moveAmount);
+                        }
+                    }
+                }
             }
         }
     }
