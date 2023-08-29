@@ -49,14 +49,7 @@ namespace Recipe {
         private int burgerMax = 2;
         private float burgerSpawnY = 0.021f;
 
-        private new void Start() {
-            base.Start();
-            Debug.Log("Adding AddIngredient to PlateKitchenObject");
-            //plateKitchenObject.OnIngredientAdded += AddIngredient;
-        }
-
         public void AddIngredient(object sender, PlateKitchenObject.OnIngredientAddedEventArgs e) {
-            Debug.Log("Properly added to event!");
             if (TryIngredientMatch(e.ingredient, out int ingredientIndex, out bool isBurger)) {
                 ActivateIngredient(ingredientIndex, isBurger);
             }
