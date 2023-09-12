@@ -81,6 +81,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RecipeIconsUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3478440030230017516, guid: ff3090384224bef408810ec0f0aadd40,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5852478435389607414, guid: ff3090384224bef408810ec0f0aadd40,
         type: 3}
       propertyPath: m_Pivot.x

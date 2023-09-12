@@ -12,6 +12,10 @@ namespace Recipe {
             plateKitchenObject.OnIngredientAdded += UpdateIcons;
         }
 
+        private void Update() {
+            transform.LookAt(Camera.main.transform);
+        }
+
         private void UpdateIcons(object sender, PlateKitchenObject.OnIngredientAddedEventArgs e) {
             RecipeIconSingleUI icon = Instantiate(IconTemplate, transform).GetComponent<RecipeIconSingleUI>();
             icon.SetIconFromKitchenObjectSO(e.ingredient);
