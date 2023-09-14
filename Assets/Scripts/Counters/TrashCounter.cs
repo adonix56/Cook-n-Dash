@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TrashCounter : BaseCounter
 {
-    [SerializeField] private KitchenObjectSO plateKitchenObjectSO;
-
     public override void Interact(CharacterController player) {
         DestroyObject(player);
     }
@@ -16,9 +14,9 @@ public class TrashCounter : BaseCounter
 
     private void DestroyObject(CharacterController player) {
         if (player.HasKitchenObject()) {
-            if (player.GetKitchenObject().GetComponent<PlateKitchenObject>() != null) {
+            if (player.GetKitchenObject().TryGetComponent<PlateKitchenObject>(out PlateKitchenObject plateKitchenObject)) {
                 player.GetKitchenObject().DestroySelf();
-                KitchenObject.SpawnKitchenObject(plateKitchenObjectSO, player);
+                KitchenObject.SpawnKitchenObject(plateKitchenObject.GetKitchenObjectSO(), player);
             } else {
                 player.GetKitchenObject().DestroySelf();
             }
