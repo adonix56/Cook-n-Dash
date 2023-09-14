@@ -115,6 +115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectSpawnPoint: {fileID: 4265482693400699991}
   progressBarUI: {fileID: 0}
+  plateKitchenObjectSO: {fileID: 11400000, guid: 7b9291527f0103f48b286489a52c6dfb,
+    type: 2}
 --- !u!1001 &3347590248043878559
 PrefabInstance:
   m_ObjectHideFlags: 0
