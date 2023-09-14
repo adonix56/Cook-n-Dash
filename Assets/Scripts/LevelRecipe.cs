@@ -12,18 +12,22 @@ public class LevelRecipe : MonoBehaviour
         if (Instance == null) {
             Instance = this;
         } else {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
     public bool TryToFindRecipe(KitchenObjectSO kitchenObjectSO, out GameObject mealRecipePrefab) {
         mealRecipePrefab = null;
-        foreach (LevelRecipeSO.LevelRecipeDictionaryItem item in _levelRecipeSO.levelRecipeDictionary) {
+        foreach (LevelRecipeSO.IngredientRecipeDictionaryItem item in _levelRecipeSO.ingredientRecipeDictionary) {
             if (item.kitchenObjectSO == kitchenObjectSO) {
                 mealRecipePrefab = item.mealRecipePrefab;
                 return true;
             }
         }
         return false;
+    }
+
+    public LevelRecipeSO GetLevelRecipeSO() {
+        return _levelRecipeSO;
     }
 }

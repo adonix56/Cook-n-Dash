@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6364743045930154229}
   - component: {fileID: 3805469736162469859}
+  - component: {fileID: 1667188379449180419}
   m_Layer: 0
   m_Name: LevelRecipe
   m_TagString: Untagged
@@ -45,3 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelRecipeSO: {fileID: 0}
+--- !u!114 &1667188379449180419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6299983293187213819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bdd4d5069ca96b4e84fc4204503343a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

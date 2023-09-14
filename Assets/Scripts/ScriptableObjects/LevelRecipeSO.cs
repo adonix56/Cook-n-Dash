@@ -7,10 +7,11 @@ using UnityEngine;
 public class LevelRecipeSO : ScriptableObject
 {
     [Serializable]
-    public class LevelRecipeDictionaryItem {
+    public class IngredientRecipeDictionaryItem {
         public KitchenObjectSO kitchenObjectSO;
         public GameObject mealRecipePrefab;
     }
 
-    public List<LevelRecipeDictionaryItem> levelRecipeDictionary;
+    public List<IngredientRecipeDictionaryItem> ingredientRecipeDictionary;
+    public List<MealRecipeSO> levelRecipes;
 }
