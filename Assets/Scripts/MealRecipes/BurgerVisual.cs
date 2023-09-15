@@ -103,6 +103,7 @@ namespace Recipe {
                 burgerCount++;
                 burgerSpawnY += 0.129f; // Move Burger Spawn up for double
                 state++;
+                mealObjects[ingredientIndex].count += 1;
             } else if (ingredientIndex == 0) { // bread
                 // Activate Bread
                 mealObjects[0].gameObject[0].SetActive(true);
@@ -133,6 +134,10 @@ namespace Recipe {
                     }
                 }
             }
+        }
+
+        public BaseRecipe GetBaseRecipe() {
+            return this;
         }
     }
 }

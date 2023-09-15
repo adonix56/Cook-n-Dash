@@ -11,6 +11,14 @@ namespace Recipe {
         protected virtual void Start() {
             plateKitchenObject = transform.parent.GetComponent<PlateKitchenObject>();
         }
+
+        public string GetIngredientQtyList() {
+            string ret = "";
+            foreach (IngredientMatch ingredientMatch in mealObjects) {
+                ret += ingredientMatch.count;
+            }
+            return ret;
+        }
     }
 }
 

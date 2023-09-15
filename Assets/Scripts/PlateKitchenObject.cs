@@ -39,4 +39,8 @@ public class PlateKitchenObject : KitchenObject
         }
         return currentMeal.CanAddIngredient(kitchenObjectSO);
     }
+
+    public BaseRecipe GetBaseRecipe() {
+        return currentMeal.GetBaseRecipe();
+    }
 }
