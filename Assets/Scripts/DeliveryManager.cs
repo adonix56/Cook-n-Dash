@@ -18,7 +18,6 @@ public class DeliveryManager : MonoBehaviour
     public static DeliveryManager Instance { get; private set; }
 
     [SerializeField] private int maxWaitingRecipes = 4;
-    [SerializeField] private WaitingRecipeUI waitingRecipeUI;
     private LevelRecipeSO levelRecipeSO;
     private List<MealRecipeSO> waitingRecipeSOList;
     private float spawnRecipeTimer;
