@@ -43,4 +43,8 @@ public class PlateKitchenObject : KitchenObject
     public BaseRecipe GetBaseRecipe() {
         return currentMeal.GetBaseRecipe();
     }
+
+    public bool isEmpty() {
+        return kitchenObjectSOList.Count == 0;
+    }
 }

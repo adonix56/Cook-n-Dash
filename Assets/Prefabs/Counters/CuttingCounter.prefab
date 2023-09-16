@@ -74,6 +74,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d72bee846803d074784ffb8f64e993ca, type: 3}
+--- !u!1 &246710274672180025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4589716710238282922, guid: d72bee846803d074784ffb8f64e993ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 4385818532402388883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1117035334497210243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246710274672180025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf4ad564ef821f4dafff1bc818ee3de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &1986257038003605552 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2831942792982843299, guid: d72bee846803d074784ffb8f64e993ca,
@@ -314,18 +332,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c857a2e399e95234b9085191a1cbb764, type: 3}
---- !u!114 &1294753915545834564 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9033880786623680577, guid: c857a2e399e95234b9085191a1cbb764,
-    type: 3}
-  m_PrefabInstance: {fileID: 7829834944054133765}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4593593397518101187 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5987133003488095942, guid: c857a2e399e95234b9085191a1cbb764,
@@ -470,7 +476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36919f5f7a8486a498325bde04b8edee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barImage: {fileID: 1294753915545834564}
   progressBarUICanvas: {fileID: 4593593397518101187}
 --- !u!114 &8939295467370780642
 MonoBehaviour:

@@ -12,4 +12,8 @@ public class LookAtCameraDirection : MonoBehaviour
         progressBarUI.transform.Rotate(new Vector3(-inverse.x, -inverse.y, -inverse.z));
         //Debug.Log($"{name} Self: {transform.rotation.eulerAngles}  Progress: {progressBarUI.transform.rotation.eulerAngles}");
     }
+
+    private void Update() {
+        //progressBarUI.transform.LookAt(Camera.main.transform);
+    }
 }

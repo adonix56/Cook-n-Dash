@@ -13,7 +13,7 @@ public class ContainerCounter : BaseCounter
         public KitchenObject kitchenObjectArg;
     }
 
-    public override void Interact(CharacterController player) {
+    public override void Interact(PlayerController player) {
         base.Interact(player);
         if (!HasKitchenObject()) {
             if (player.HasKitchenObject()) {

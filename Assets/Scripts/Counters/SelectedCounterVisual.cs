@@ -8,10 +8,10 @@ public class SelectedCounterVisual : MonoBehaviour
     [SerializeField] private GameObject selectedVisual;
 
     private void Start() {
-        CharacterController.Instance.OnSelectedCounterChanged += Player_OnSelectedCounterChanged;
+        PlayerController.Instance.OnSelectedCounterChanged += Player_OnSelectedCounterChanged;
     }
 
-    private void Player_OnSelectedCounterChanged(object sender, CharacterController.OnSelectedCounterChangedEventArgs e) {
+    private void Player_OnSelectedCounterChanged(object sender, PlayerController.OnSelectedCounterChangedEventArgs e) {
         if (e.selectedCounter == baseCounter) {
             selectedVisual.SetActive(true);
         } else {

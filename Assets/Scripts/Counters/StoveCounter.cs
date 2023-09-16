@@ -31,7 +31,7 @@ public class StoveCounter : BaseCounter
         }
     }
 
-    public override void Interact(CharacterController player)
+    public override void Interact(PlayerController player)
     {
         if (!HasKitchenObject())
         {

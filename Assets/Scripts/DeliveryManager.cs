@@ -9,6 +9,8 @@ public class DeliveryManager : MonoBehaviour
 {
     public event EventHandler<DeliveryManagerEventArgs> OnNewRecipeSpawn;
     public event EventHandler<DeliveryManagerEventArgs> OnRecipeCompleted;
+    public event EventHandler OnRecipeSuccess;
+    public event EventHandler OnRecipeFailed;
 
     public class DeliveryManagerEventArgs : EventArgs {
         public MealRecipeSO mealRecipeSO;
@@ -53,24 +55,28 @@ public class DeliveryManager : MonoBehaviour
     }
 
     public bool DeliverMeal(PlateKitchenObject plateKitchenObject) {
-        BaseRecipe attemptedDelivery = plateKitchenObject.GetBaseRecipe();
-        for (int i = 0; i < waitingRecipeSOList.Count; i++) {
-            // If it's the same type of recipe
-            if (attemptedDelivery.GetType() == waitingRecipeSOList[i].baseRecipe.GetType()) { 
-                string ingredientQtyList = attemptedDelivery.GetIngredientQtyList();
-                // If the ingredientQtyList code matches
-                bool success = ingredientQtyList == waitingRecipeSOList[i].successQtyList;
-                bool failed = waitingRecipeSOList[i].AcceptFailedAttempt(ingredientQtyList);
-                if (success || failed) {
-                    OnRecipeCompleted?.Invoke(this, new DeliveryManagerEventArgs {
-                        mealRecipeSO = waitingRecipeSOList[i],
-                        failedDelivery = failed
-                    });
-                    waitingRecipeSOList.RemoveAt(i);
-                    return true;
+        if (!plateKitchenObject.isEmpty()) {
+            BaseRecipe attemptedDelivery = plateKitchenObject.GetBaseRecipe();
+            for (int i = 0; i < waitingRecipeSOList.Count; i++) {
+                // If it's the same type of recipe
+                if (attemptedDelivery.GetType() == waitingRecipeSOList[i].baseRecipe.GetType()) {
+                    string ingredientQtyList = attemptedDelivery.GetIngredientQtyList();
+                    // If the ingredientQtyList code matches
+                    bool success = ingredientQtyList == waitingRecipeSOList[i].successQtyList;
+                    bool failed = waitingRecipeSOList[i].AcceptFailedAttempt(ingredientQtyList);
+                    if (success || failed) {
+                        OnRecipeCompleted?.Invoke(this, new DeliveryManagerEventArgs {
+                            mealRecipeSO = waitingRecipeSOList[i],
+                            failedDelivery = failed
+                        });
+                        OnRecipeSuccess?.Invoke(this, EventArgs.Empty);
+                        waitingRecipeSOList.RemoveAt(i);
+                        return true;
+                    }
                 }
             }
         }
+        OnRecipeFailed?.Invoke(this, EventArgs.Empty);
         return false;
     }
 }

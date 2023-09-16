@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour, IKitchenObjectParent {
-    public static CharacterController Instance { get; private set; }
+public class PlayerController : MonoBehaviour, IKitchenObjectParent {
+    public static PlayerController Instance { get; private set; }
 
+    public event EventHandler OnPickup;
+    public event EventHandler OnPutdown;
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs {
         public BaseCounter selectedCounter;
@@ -144,6 +146,7 @@ public class CharacterController : MonoBehaviour, IKitchenObjectParent {
     }
 
     public void SetKitchenObject(KitchenObject kitchenObject) {
+        OnPickup?.Invoke(this, EventArgs.Empty);
         this.kitchenObject = kitchenObject;
     }
 
@@ -152,6 +155,7 @@ public class CharacterController : MonoBehaviour, IKitchenObjectParent {
     }
 
     public void ClearKitchenObject() {
+        OnPutdown?.Invoke(this, EventArgs.Empty);
         kitchenObject = null;
     }
 

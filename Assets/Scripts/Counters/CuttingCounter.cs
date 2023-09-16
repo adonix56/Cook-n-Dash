@@ -10,7 +10,7 @@ public class CuttingCounter : BaseCounter
     private CuttingRecipeSO currentRecipe;
     private bool isCutting = false;
 
-    public override void Interact(CharacterController player) {
+    public override void Interact(PlayerController player) {
         if (!HasKitchenObject()) {
             if (player.HasKitchenObject()) {
                 player.GetKitchenObject().SetKitchenObjectParent(this);
@@ -28,7 +28,7 @@ public class CuttingCounter : BaseCounter
         }
     }
 
-    public override void InteractAlternateStart(CharacterController player) {
+    public override void InteractAlternateStart(PlayerController player) {
         if (HasKitchenObject()) {
             if (currentRecipe != null)
                 CutKitchenObject();
@@ -53,7 +53,7 @@ public class CuttingCounter : BaseCounter
         return null;
     }
 
-    public override void InteractAlternateEnd(CharacterController player) {
+    public override void InteractAlternateEnd(PlayerController player) {
         if (isCutting) {
             StopCutKitchenObject();
         }

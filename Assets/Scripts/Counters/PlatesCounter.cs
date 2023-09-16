@@ -22,7 +22,7 @@ public class PlatesCounter : BaseCounter
         platesCount = 0;
     }
 
-    public override void Interact(CharacterController player) {
+    public override void Interact(PlayerController player) {
         if (!player.HasKitchenObject() && platesCount > 0) {
             OnPlatesRemoved?.Invoke(this, EventArgs.Empty);
             KitchenObject kitchenObject = KitchenObject.SpawnKitchenObject(platesKitchenObjectSO, player);
@@ -30,7 +30,7 @@ public class PlatesCounter : BaseCounter
         }
     }
 
-    public override void InteractAlternateStart(CharacterController player) {
+    public override void InteractAlternateStart(PlayerController player) {
         if (platesCount < platesCounterMax) {
             OnPlatesSpawned?.Invoke(this, new PlatesSpawnEventArgs {
                 plateNumber = platesCount

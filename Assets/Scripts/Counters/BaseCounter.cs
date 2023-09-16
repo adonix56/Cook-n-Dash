@@ -1,17 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseCounter : MonoBehaviour, IKitchenObjectParent 
 {
+    public static event EventHandler OnBuildMealOnPlayer;
     [SerializeField] private Transform objectSpawnPoint;
     [SerializeField] private ProgressBarUI progressBarUI;
 
     private KitchenObject kitchenObject;
-    public virtual void Interact(CharacterController player) { }
-    public virtual void InteractAlternate(CharacterController player) { }
-    public virtual void InteractAlternateStart(CharacterController player) { }
-    public virtual void InteractAlternateEnd(CharacterController player) { }
+    public virtual void Interact(PlayerController player) { }
+    public virtual void InteractAlternate(PlayerController player) { }
+    public virtual void InteractAlternateStart(PlayerController player) { }
+    public virtual void InteractAlternateEnd(PlayerController player) { }
 
     public Transform GetKitchenObjectSpawnPoint() {
         return objectSpawnPoint;
@@ -60,13 +62,16 @@ public abstract class BaseCounter : MonoBehaviour, IKitchenObjectParent
         }
     }
 
-    public bool TryToBuildMeal(CharacterController player) {
+    public bool TryToBuildMeal(PlayerController player) {
         bool plateCounter = GetKitchenObject() is PlateKitchenObject;
         bool platePlayer = player.GetKitchenObject() is PlateKitchenObject;
         if (plateCounter && !platePlayer) { // Plate is on the Counter
             return BuildMeal(kitchenObject as PlateKitchenObject, player.GetKitchenObject());
         } else if (platePlayer && !plateCounter) { // Player is holding a plate
-            return BuildMeal(player.GetKitchenObject() as PlateKitchenObject, kitchenObject);
+            if (BuildMeal(player.GetKitchenObject() as PlateKitchenObject, kitchenObject)) {
+                OnBuildMealOnPlayer?.Invoke(this, EventArgs.Empty);
+                return true;
+            }
         }
         return false;
     }
