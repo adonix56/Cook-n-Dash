@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LevelRecipe : MonoBehaviour
 {
-    public static LevelRecipe Instance;
+    public static LevelRecipe Instance { get; private set; }
     [SerializeField] private LevelRecipeSO _levelRecipeSO;
 
     private void Awake() {

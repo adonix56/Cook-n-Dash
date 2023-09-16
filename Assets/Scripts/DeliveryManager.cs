@@ -5,7 +5,7 @@ using Recipe;
 
 public class DeliveryManager : MonoBehaviour
 {
-    public static DeliveryManager Instance;
+    public static DeliveryManager Instance { get; private set; }
 
     [SerializeField] private int maxWaitingRecipes = 4;
     private LevelRecipeSO levelRecipeSO;
@@ -39,19 +39,19 @@ public class DeliveryManager : MonoBehaviour
         }
     }
 
-    public void DeliverMeal(PlateKitchenObject plateKitchenObject) {
+    public bool DeliverMeal(PlateKitchenObject plateKitchenObject) {
         BaseRecipe attemptedDelivery = plateKitchenObject.GetBaseRecipe();
-        Debug.Log($"Check if it's a burger {attemptedDelivery.GetType()}");
         for (int i = 0; i < waitingRecipeSOList.Count; i++) {
-            if (attemptedDelivery.GetType() == waitingRecipeSOList[i].baseRecipe.GetType()) { // If it's the same type of recipe
+            // If it's the same type of recipe
+            if (attemptedDelivery.GetType() == waitingRecipeSOList[i].baseRecipe.GetType()) { 
                 string ingredientQtyList = attemptedDelivery.GetIngredientQtyList();
-                if (ingredientQtyList == waitingRecipeSOList[i].successQtyList || waitingRecipeSOList[i].AcceptFailedAttempt(ingredientQtyList)) { // If the ingredientQtyList code matches
-                    Debug.Log("Matched a meal!");
+                // If the ingredientQtyList code matches
+                if (ingredientQtyList == waitingRecipeSOList[i].successQtyList || waitingRecipeSOList[i].AcceptFailedAttempt(ingredientQtyList)) {
                     waitingRecipeSOList.RemoveAt(i);
-                    return;
+                    return true;
                 }
             }
         }
-        Debug.Log("No one wants this...");
+        return false;
     }
 }

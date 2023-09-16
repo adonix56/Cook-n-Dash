@@ -14,7 +14,9 @@ public class DeliveryCounter : BaseCounter {
     private void DestroyObject(CharacterController player) {
         if (player.HasKitchenObject()) {
             if (player.GetKitchenObject().TryGetComponent<PlateKitchenObject>(out PlateKitchenObject plateKitchenObject)) {
-                DeliveryManager.Instance.DeliverMeal(plateKitchenObject);
+                if (DeliveryManager.Instance.DeliverMeal(plateKitchenObject)) {
+                    player.GetKitchenObject().DestroySelf();
+                }
             }
         }
     }
