@@ -16,3 +16,6 @@ MonoBehaviour:
   baseRecipe: {fileID: 3476004904623576056, guid: 0c84515e9c9257f439fbb40a808d8901,
     type: 3}
   successQtyList: 010100
+  iconList:
+  - {fileID: 11400000, guid: 27c73f21c93a62c418ed71f324d3e423, type: 2}
+  - {fileID: 11400000, guid: f1a4bfbed13fffb44aced9d9b3289242, type: 2}

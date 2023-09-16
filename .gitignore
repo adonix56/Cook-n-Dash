@@ -37,3 +37,8 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+/[Aa]ssets/GUI PRO Kit - Casual Game/
+GUI PRO Kit - Casual Game.meta
+/[Aa]ssets/Simple UI/
+Simple UI.meta
