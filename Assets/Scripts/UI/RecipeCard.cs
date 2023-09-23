@@ -16,6 +16,8 @@ public class RecipeCard : MonoBehaviour {
     private bool startTimer = false;
     private Image sliderFillImage;
     private Animator animator;
+    private float completeFadeDuration = 1f / 3f;
+    private float timeoutFadeDuration = 1f;
 
     private void Start() {
         sliderFillImage = sliderTimer.fillRect.GetComponent<Image>();
@@ -28,7 +30,6 @@ public class RecipeCard : MonoBehaviour {
             CalculateSliderColor();
             if (sliderTimer.value <= 0) {
                 startTimer = false;
-                Debug.Log("KILL!");
                 DeliveryManager.Instance.RecipeTimeout(currentRecipe);
             }
         }
@@ -79,5 +80,21 @@ public class RecipeCard : MonoBehaviour {
 
     public void ShowCoins() {
         if (!coinParticles.activeSelf) coinParticles.SetActive(true);
+    }
+
+    public void DestroyRecipeCard() {
+        Destroy(gameObject);
+    }
+
+    private void FadeIcons(float fadeDuration) {
+        foreach (Transform child in gridParent) {
+            if (child.TryGetComponent<RecipeIconSingleUI>(out RecipeIconSingleUI singleUI)) {
+                singleUI.Fade(fadeDuration);
+            }
+        }
+    }
+
+    public void EndCardLife(string animatorTrigger) {
+        animator.SetTrigger(animatorTrigger);
     }
 }

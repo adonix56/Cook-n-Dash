@@ -14,7 +14,8 @@ public class WaitingRecipeUI : MonoBehaviour
     }
 
     private void OnRecipeComplete(object sender, DeliveryManager.RecipeRemoveEventArgs e) {
-        Destroy(container.GetChild(e.recipeCardIndex).gameObject);
+        //Destroy(container.GetChild(e.recipeCardIndex).gameObject);
+        //container.GetChild(e.recipeCardIndex).GetR
         /*foreach (Transform child in container) {
             if (child.TryGetComponent<RecipeCard>(out RecipeCard recipeCard)) {
                 if (recipeCard.isRecipe(e.mealRecipeSO)) {
