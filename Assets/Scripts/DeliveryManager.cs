@@ -7,13 +7,18 @@ using Random = UnityEngine.Random;
 
 public class DeliveryManager : MonoBehaviour
 {
-    public event EventHandler<DeliveryManagerEventArgs> OnNewRecipeSpawn;
-    public event EventHandler<DeliveryManagerEventArgs> OnRecipeCompleted;
+    public event EventHandler<RecipeCreateEventArgs> OnNewRecipeSpawn;
+    public event EventHandler<RecipeRemoveEventArgs> OnRecipeCompleted;
+    public event EventHandler<RecipeRemoveEventArgs> OnRecipeTimeout;
     public event EventHandler OnRecipeSuccess;
     public event EventHandler OnRecipeFailed;
 
-    public class DeliveryManagerEventArgs : EventArgs {
+    public class RecipeCreateEventArgs : EventArgs {
         public MealRecipeSO mealRecipeSO;
+    }
+
+    public class RecipeRemoveEventArgs : EventArgs {
+        public int recipeCardIndex;
         public bool failedDelivery;
     }
 
@@ -45,11 +50,10 @@ public class DeliveryManager : MonoBehaviour
 
             if (waitingRecipeSOList.Count < maxWaitingRecipes) {
                 MealRecipeSO waitingRecipeSO = levelRecipeSO.levelRecipes[Random.Range(0, levelRecipeSO.levelRecipes.Count)];
-                waitingRecipeSOList.Add(waitingRecipeSO);
-                OnNewRecipeSpawn?.Invoke(this, new DeliveryManagerEventArgs {
-                    mealRecipeSO = waitingRecipeSO,
-                    failedDelivery = false
+                OnNewRecipeSpawn?.Invoke(this, new RecipeCreateEventArgs {
+                    mealRecipeSO = waitingRecipeSO
                 });
+                waitingRecipeSOList.Add(waitingRecipeSO);
             }
         }
     }
@@ -65,8 +69,8 @@ public class DeliveryManager : MonoBehaviour
                     bool success = ingredientQtyList == waitingRecipeSOList[i].successQtyList;
                     bool failed = waitingRecipeSOList[i].AcceptFailedAttempt(ingredientQtyList);
                     if (success || failed) {
-                        OnRecipeCompleted?.Invoke(this, new DeliveryManagerEventArgs {
-                            mealRecipeSO = waitingRecipeSOList[i],
+                        OnRecipeCompleted?.Invoke(this, new RecipeRemoveEventArgs {
+                            recipeCardIndex = i,
                             failedDelivery = failed
                         });
                         OnRecipeSuccess?.Invoke(this, EventArgs.Empty);
@@ -78,5 +82,17 @@ public class DeliveryManager : MonoBehaviour
         }
         OnRecipeFailed?.Invoke(this, EventArgs.Empty);
         return false;
+    }
+
+    public void RecipeTimeout(MealRecipeSO recipeTimeout) {
+        for (int i = 0; i < waitingRecipeSOList.Count; i++) {
+            if (waitingRecipeSOList[i] == recipeTimeout) {
+                waitingRecipeSOList.RemoveAt(i);
+                OnRecipeTimeout?.Invoke(this, new RecipeRemoveEventArgs {
+                    recipeCardIndex = i
+                });
+                return;
+            }
+        }
     }
 }
