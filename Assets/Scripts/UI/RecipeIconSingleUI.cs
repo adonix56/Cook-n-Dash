@@ -6,6 +6,7 @@ using UnityEngine.UI;
 namespace Recipe {
     public class RecipeIconSingleUI : MonoBehaviour {
         [SerializeField] private Image icon;
+        [SerializeField] private Image background;
 
         private bool fade = false;
         private float fadeStep = 1f;
@@ -15,6 +16,9 @@ namespace Recipe {
                 Color color = icon.color;
                 color.a -= Time.deltaTime / fadeStep;
                 icon.color = color;
+                color = background.color;
+                color.a -= Time.deltaTime / fadeStep;
+                background.color = color;
             }
         }
 

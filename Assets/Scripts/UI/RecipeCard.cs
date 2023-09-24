@@ -16,8 +16,6 @@ public class RecipeCard : MonoBehaviour {
     private bool startTimer = false;
     private Image sliderFillImage;
     private Animator animator;
-    private float completeFadeDuration = 1f / 3f;
-    private float timeoutFadeDuration = 1f;
 
     private void Start() {
         sliderFillImage = sliderTimer.fillRect.GetComponent<Image>();
