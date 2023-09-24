@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WaitingRecipeUI : MonoBehaviour
 {
+    private const string COMPLETE = "Complete";
+    private const string TIMEOUT = "Timeout";
+
     [SerializeField] private Transform container;
     [SerializeField] private Transform recipeCardPrefab;
 
@@ -14,6 +17,7 @@ public class WaitingRecipeUI : MonoBehaviour
     }
 
     private void OnRecipeComplete(object sender, DeliveryManager.RecipeRemoveEventArgs e) {
+        container.GetChild(e.recipeCardIndex).GetComponent<RecipeCard>().EndCardLife(COMPLETE);
         //Destroy(container.GetChild(e.recipeCardIndex).gameObject);
         //container.GetChild(e.recipeCardIndex).GetR
         /*foreach (Transform child in container) {
@@ -32,6 +36,7 @@ public class WaitingRecipeUI : MonoBehaviour
     }
 
     private void OnRecipeTimeout(object sender, DeliveryManager.RecipeRemoveEventArgs e) {
+        container.GetChild(e.recipeCardIndex).GetComponent<RecipeCard>().EndCardLife(TIMEOUT);
         /*foreach (Transform child in container) {
             if (e.recipeCard.transform == child) {
                 Destroy(child.gameObject);
