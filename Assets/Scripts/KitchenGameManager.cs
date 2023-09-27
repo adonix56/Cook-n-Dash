@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class KitchenGameManager : MonoBehaviour
 {
@@ -13,12 +14,17 @@ public class KitchenGameManager : MonoBehaviour
         GameOver
     }
 
+    [Tooltip("The amount of seconds each recipe will take to timeout"), MinMaxSlider(Bound = true, Min = 5f, Max = 120f)]
+    public Vector2 recipeTimeoutDuration;
+    [Tooltip("The amount of seconds each between recipe spawns"), MinMaxSlider(Bound = true, Min = 5f, Max = 120f)]
+    public Vector2 recipeSpawnCooldown;
+
     public event EventHandler OnStateChanged;
 
     private State state;
     private float waitingToStartTimer = 1f;
     private float countdownTimer = 3f;
-    private float gamePlayingTimer = 1000000f;
+    private float gamePlayingTimer = 1000f;
 
     private void Awake() {
         if (Instance == null) {
@@ -27,6 +33,7 @@ public class KitchenGameManager : MonoBehaviour
             Destroy(gameObject);
         }
         state = State.WaitingToStart;
+        Debug.Log(recipeSpawnCooldown);
     }
 
     private void Update() {
@@ -68,5 +75,13 @@ public class KitchenGameManager : MonoBehaviour
 
     public float GetCountdownTimer() {
         return countdownTimer;
+    }
+
+    public float GetRecipeTimeout() {
+        return Random.Range(recipeTimeoutDuration.x, recipeTimeoutDuration.y);
+    }
+
+    public float GetRecipeSpawnTimer() {
+        return Random.Range(recipeSpawnCooldown.x, recipeSpawnCooldown.y);
     }
 }

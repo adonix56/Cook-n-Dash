@@ -32,7 +32,7 @@ public class WaitingRecipeUI : MonoBehaviour
 
     private void OnNewRecipeSpawn(object sender, DeliveryManager.RecipeCreateEventArgs e) {
         RecipeCard recipeCard = Instantiate(recipeCardPrefab, container).GetComponent<RecipeCard>();
-        recipeCard.SetupRecipeCard(e.mealRecipeSO, 5f);
+        recipeCard.SetupRecipeCard(e.mealRecipeSO, KitchenGameManager.Instance.GetRecipeTimeout());
     }
 
     private void OnRecipeTimeout(object sender, DeliveryManager.RecipeRemoveEventArgs e) {

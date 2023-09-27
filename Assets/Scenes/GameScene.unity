@@ -198,50 +198,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1463057685}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &32718814
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 32718816}
-  - component: {fileID: 32718815}
-  m_Layer: 0
-  m_Name: KitchenGameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &32718815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32718814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c63b9772274df1c43b7a51d43fdcf198, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &32718816
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32718814}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &35724094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2944640631549490773, guid: e2cbe6c1cdeb2944f9938a8b43fd4bfd,
@@ -4547,7 +4503,7 @@ PrefabInstance:
     - target: {fileID: 6299983293187213819, guid: 56e857b0e1358a84c9e03fd3f28f4d4f,
         type: 3}
       propertyPath: m_Name
-      value: LevelRecipe
+      value: Kitchen Game Manager
       objectReference: {fileID: 0}
     - target: {fileID: 6364743045930154229, guid: 56e857b0e1358a84c9e03fd3f28f4d4f,
         type: 3}
@@ -4603,6 +4559,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819259476439685696, guid: 56e857b0e1358a84c9e03fd3f28f4d4f,
+        type: 3}
+      propertyPath: recipeSpawnCooldown
+      value: 79.799995
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819259476439685696, guid: 56e857b0e1358a84c9e03fd3f28f4d4f,
+        type: 3}
+      propertyPath: recipeSpawnCooldown.x
+      value: 20.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819259476439685696, guid: 56e857b0e1358a84c9e03fd3f28f4d4f,
+        type: 3}
+      propertyPath: recipeSpawnCooldown.y
+      value: 34.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819259476439685696, guid: 56e857b0e1358a84c9e03fd3f28f4d4f,
+        type: 3}
+      propertyPath: recipeSpawnCooldownMin
+      value: 30.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819259476439685696, guid: 56e857b0e1358a84c9e03fd3f28f4d4f,
+        type: 3}
+      propertyPath: recipeTimeoutDuration.x
+      value: 45.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819259476439685696, guid: 56e857b0e1358a84c9e03fd3f28f4d4f,
+        type: 3}
+      propertyPath: recipeTimeoutDuration.y
+      value: 55.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56e857b0e1358a84c9e03fd3f28f4d4f, type: 3}

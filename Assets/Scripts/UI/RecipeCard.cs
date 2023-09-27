@@ -93,6 +93,7 @@ public class RecipeCard : MonoBehaviour {
     }
 
     public void EndCardLife(string animatorTrigger) {
+        Debug.Log("GO!");
         animator.SetTrigger(animatorTrigger);
     }
 }

@@ -28,7 +28,6 @@ public class DeliveryManager : MonoBehaviour
     private LevelRecipeSO levelRecipeSO;
     private List<MealRecipeSO> waitingRecipeSOList;
     private float spawnRecipeTimer;
-    private float spawnRecipeTimerMax = 4f;
 
     private void Awake() {
         if (Instance == null) {
@@ -41,12 +40,13 @@ public class DeliveryManager : MonoBehaviour
 
     private void Start() {
         levelRecipeSO = LevelRecipe.Instance.GetLevelRecipeSO();
+        spawnRecipeTimer = KitchenGameManager.Instance.GetRecipeSpawnTimer();
     }
 
     private void Update() {
         spawnRecipeTimer -= Time.deltaTime;
         if (spawnRecipeTimer <= 0f) {
-            spawnRecipeTimer = spawnRecipeTimerMax;
+            spawnRecipeTimer = KitchenGameManager.Instance.GetRecipeSpawnTimer();
 
             if (waitingRecipeSOList.Count < maxWaitingRecipes) {
                 MealRecipeSO waitingRecipeSO = levelRecipeSO.levelRecipes[Random.Range(0, levelRecipeSO.levelRecipes.Count)];
