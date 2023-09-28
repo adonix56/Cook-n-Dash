@@ -84,4 +84,8 @@ public class KitchenGameManager : MonoBehaviour
     public float GetRecipeSpawnTimer() {
         return Random.Range(recipeSpawnCooldown.x, recipeSpawnCooldown.y);
     }
+
+    public bool IsGameOver() {
+        return state == State.GameOver;
+    }
 }

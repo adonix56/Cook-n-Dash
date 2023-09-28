@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameOverUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    [SerializeField] private TextMeshProUGUI recipesDelivered;
+
+    private void Start() {
+        KitchenGameManager.Instance.OnStateChanged += OnGameStateChanged;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnGameStateChanged(object sender, System.EventArgs e) {
+        if (KitchenGameManager.Instance.IsGameOver()) {
+            gameObject.SetActive(true);
+        } else {
+            gameObject.SetActive(false);
+        }
     }
 }
