@@ -28,6 +28,7 @@ public class DeliveryManager : MonoBehaviour
     private LevelRecipeSO levelRecipeSO;
     private List<MealRecipeSO> waitingRecipeSOList;
     private float spawnRecipeTimer;
+    private int successfulRecipes;
 
     private void Awake() {
         if (Instance == null) {
@@ -36,6 +37,7 @@ public class DeliveryManager : MonoBehaviour
             Destroy(gameObject);
         }
         waitingRecipeSOList = new List<MealRecipeSO>();
+        successfulRecipes = 0;
     }
 
     private void Start() {
@@ -74,6 +76,7 @@ public class DeliveryManager : MonoBehaviour
                             failedDelivery = failed
                         });
                         OnRecipeSuccess?.Invoke(this, EventArgs.Empty);
+                        successfulRecipes++;
                         waitingRecipeSOList.RemoveAt(i);
                         return true;
                     }
@@ -94,5 +97,9 @@ public class DeliveryManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public int GetSuccessfulRecipe() {
+        return successfulRecipes;
     }
 }

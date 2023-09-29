@@ -9,11 +9,13 @@ public class GameOverUI : MonoBehaviour
 
     private void Start() {
         KitchenGameManager.Instance.OnStateChanged += OnGameStateChanged;
+        gameObject.SetActive(false);
     }
 
     private void OnGameStateChanged(object sender, System.EventArgs e) {
         if (KitchenGameManager.Instance.IsGameOver()) {
             gameObject.SetActive(true);
+            recipesDelivered.text = DeliveryManager.Instance.GetSuccessfulRecipe().ToString();
         } else {
             gameObject.SetActive(false);
         }
