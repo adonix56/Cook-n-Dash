@@ -77,6 +77,10 @@ public class KitchenGameManager : MonoBehaviour
         return countdownTimer;
     }
 
+    public float GetGamePlayingTimer() {
+        return gamePlayingTimer;
+    }
+
     public float GetRecipeTimeout() {
         return Random.Range(recipeTimeoutDuration.x, recipeTimeoutDuration.y);
     }
